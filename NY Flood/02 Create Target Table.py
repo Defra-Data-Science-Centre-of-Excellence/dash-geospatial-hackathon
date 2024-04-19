@@ -29,7 +29,9 @@ RESOLUTION = 7
 
 sample = dbutils.widgets.getArgument("Sample_Type")
 
-with open(f"./splits/{sample}.json", "r") as fp:
+current_username = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get()
+
+with open(f"/Workspace/Users/{current_username}/dash-geospatial-hackathon-20240419/NY Flood/splits/{sample}.json", "r") as fp:
   sample_mukeys = json.load(fp)
 
 df_sample_mukeys = spark.createDataFrame(sample_mukeys, "integer")\
